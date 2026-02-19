@@ -1,0 +1,1684 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Radu Mocuța | Coach Fitness & Nutriție</title>
+  <meta name="description" content="Radu Mocuța – Coach certificat de fitness și nutriție din 2018. Scapă de 8-12 kg în 4-6 luni cu un plan personalizat de antrenament și nutriție." />
+  <meta name="keywords" content="coach fitness, nutriție, antrenament personal, coaching online, slăbit, transformare corporală, București" />
+  <meta name="author" content="Radu Mocuța" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Radu Mocuța | Coach Fitness & Nutriție" />
+  <meta property="og:description" content="Cum ajungi să dai jos 8-12 kg în 4-6 luni și să menții rezultatele. Coach certificat cu 10.000+ ore practică." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tudorbradescu.github.io/radu-fitness-coaching/" />
+  <meta property="og:image" content="https://tudorbradescu.github.io/radu-fitness-coaching/og-image.jpg" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Radu Mocuța | Coach Fitness & Nutriție" />
+  <meta name="twitter:description" content="Transformarea ta începe cu o decizie. Fă-o acum." />
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Radu Mocuța Fitness & Nutriție",
+    "description": "Coach certificat de fitness și nutriție din 2018 cu peste 10.000 de ore de practică.",
+    "url": "https://tudorbradescu.github.io/radu-fitness-coaching/",
+    "sameAs": [
+      "https://www.instagram.com/radu_fitnesssinutritie/",
+      "https://www.tiktok.com/@radu_fitnesssinutritie",
+      "https://linktr.ee/radumocutafit"
+    ],
+    "priceRange": "$$",
+    "address": { "@type": "PostalAddress", "addressCountry": "RO" }
+  }
+  </script>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+
+  <style>
+    /* =============================================
+       RESET & BASE
+    ============================================= */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --black:   #0a0a0a;
+      --black2:  #111111;
+      --black3:  #1a1a1a;
+      --red:     #ef4444;
+      --orange:  #f97316;
+      --gradient: linear-gradient(135deg, #ef4444 0%, #f97316 100%);
+      --white:   #ffffff;
+      --grey:    #888888;
+      --lightgrey: #cccccc;
+      --font-head: 'Bebas Neue', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+      cursor: none;
+    }
+    body.loading { overflow: hidden; }
+    ::selection { background: var(--red); color: var(--white); }
+
+    /* =============================================
+       CUSTOM CURSOR
+    ============================================= */
+    #cursor {
+      position: fixed;
+      width: 12px; height: 12px;
+      background: var(--red);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease, width 0.2s ease, height 0.2s ease, background 0.2s ease;
+      mix-blend-mode: normal;
+    }
+    #cursor-follower {
+      position: fixed;
+      width: 36px; height: 36px;
+      border: 1.5px solid rgba(239,68,68,0.6);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99998;
+      transform: translate(-50%, -50%);
+      transition: transform 0.25s cubic-bezier(0.23,1,0.32,1),
+                  width 0.3s ease, height 0.3s ease,
+                  border-color 0.3s ease;
+    }
+    body:has(a:hover) #cursor,
+    body:has(button:hover) #cursor { width: 20px; height: 20px; background: var(--orange); }
+    body:has(a:hover) #cursor-follower,
+    body:has(button:hover) #cursor-follower { width: 56px; height: 56px; border-color: rgba(249,115,22,0.5); }
+
+    /* =============================================
+       LOADER
+    ============================================= */
+    #loader {
+      position: fixed; inset: 0;
+      background: var(--black);
+      z-index: 99997;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .loader-line {
+      overflow: hidden;
+      line-height: 1;
+    }
+    .loader-name {
+      font-family: var(--font-head);
+      font-size: clamp(3rem, 10vw, 8rem);
+      letter-spacing: 0.06em;
+      color: var(--white);
+      display: block;
+      transform: translateY(110%);
+    }
+    .loader-sub {
+      font-family: var(--font-body);
+      font-size: clamp(0.75rem, 2vw, 1.1rem);
+      font-weight: 600;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--red);
+      display: block;
+      transform: translateY(110%);
+      margin-top: 0.5rem;
+    }
+    .loader-bar-wrap {
+      width: 200px; height: 2px;
+      background: rgba(255,255,255,0.1);
+      margin-top: 3rem;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .loader-bar {
+      height: 100%;
+      width: 0%;
+      background: var(--gradient);
+      border-radius: 2px;
+    }
+    .loader-percent {
+      font-family: var(--font-head);
+      font-size: 1rem;
+      color: var(--grey);
+      letter-spacing: 0.2em;
+      margin-top: 1rem;
+    }
+
+    /* =============================================
+       NAVBAR
+    ============================================= */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 9000;
+      padding: 1.5rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s ease, padding 0.4s ease, backdrop-filter 0.4s ease;
+    }
+    #navbar.scrolled {
+      background: rgba(10,10,10,0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 1rem 2.5rem;
+      border-bottom: 1px solid rgba(239,68,68,0.15);
+    }
+    .nav-logo {
+      font-family: var(--font-head);
+      font-size: 1.6rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .nav-logo span { color: var(--red); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--lightgrey);
+      text-decoration: none;
+      transition: color 0.3s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1.5px;
+      background: var(--red);
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta {
+      background: var(--gradient);
+      color: var(--white) !important;
+      padding: 0.6rem 1.4rem;
+      border-radius: 4px;
+      font-weight: 700 !important;
+      transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+    }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { transform: scale(1.05); box-shadow: 0 8px 24px rgba(239,68,68,0.35) !important; }
+
+    /* Burger */
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: none;
+      z-index: 10001;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .burger span {
+      display: block;
+      width: 26px; height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s;
+    }
+    .burger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger.active span:nth-child(2) { opacity: 0; }
+    .burger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile menu overlay */
+    #mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--black);
+      z-index: 9500;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+    #mobile-menu.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    #mobile-menu a {
+      font-family: var(--font-head);
+      font-size: clamp(2.5rem, 10vw, 4rem);
+      letter-spacing: 0.08em;
+      color: var(--white);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    #mobile-menu a:hover { color: var(--red); }
+    .mobile-menu-cta {
+      background: var(--gradient) !important;
+      color: var(--white) !important;
+      padding: 1rem 2.5rem !important;
+      border-radius: 6px !important;
+      font-size: clamp(1.2rem, 5vw, 2rem) !important;
+      margin-top: 1rem;
+    }
+
+    /* =============================================
+       HERO
+    ============================================= */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(239,68,68,0.12) 0%, transparent 65%),
+        radial-gradient(ellipse 60% 80% at 30% 50%, rgba(249,115,22,0.06) 0%, transparent 65%),
+        var(--black);
+      z-index: 0;
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(239,68,68,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(239,68,68,0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+      z-index: 0;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 10rem 2.5rem 5rem;
+      width: 100%;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(239,68,68,0.1);
+      border: 1px solid rgba(239,68,68,0.3);
+      border-radius: 100px;
+      padding: 0.45rem 1rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 2rem;
+      opacity: 0;
+    }
+    .hero-badge i { font-size: 0.65rem; }
+    .hero-title {
+      font-family: var(--font-head);
+      font-size: clamp(4rem, 11vw, 9.5rem);
+      line-height: 0.92;
+      letter-spacing: 0.02em;
+      color: var(--white);
+      overflow: hidden;
+      margin-bottom: 0.3rem;
+    }
+    .hero-title .line { display: block; overflow: hidden; }
+    .hero-title .line span { display: block; transform: translateY(110%); }
+    .hero-title .accent { color: transparent; -webkit-text-stroke: 1.5px var(--red); }
+    .hero-subtitle {
+      font-size: clamp(0.85rem, 2vw, 1.05rem);
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 2.5rem;
+      opacity: 0;
+    }
+    .hero-tagline {
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
+      font-weight: 400;
+      color: var(--lightgrey);
+      line-height: 1.5;
+      max-width: 580px;
+      margin-bottom: 3rem;
+      opacity: 0;
+    }
+    .hero-tagline strong { color: var(--white); font-weight: 700; }
+    .hero-cta-group {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      opacity: 0;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--gradient);
+      color: var(--white);
+      padding: 1rem 2rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      border: none;
+      cursor: none;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(239,68,68,0.4); }
+    .btn-primary:hover::before { opacity: 1; }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: transparent;
+      color: var(--white);
+      padding: 1rem 2rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      cursor: none;
+      transition: border-color 0.3s, background 0.3s, transform 0.25s;
+    }
+    .btn-secondary:hover { border-color: var(--red); background: rgba(239,68,68,0.08); transform: translateY(-3px); }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem; left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--grey);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0;
+      z-index: 2;
+    }
+    .scroll-line {
+      width: 1px; height: 50px;
+      background: linear-gradient(to bottom, var(--red), transparent);
+      animation: scrollAnim 1.8s ease-in-out infinite;
+    }
+    @keyframes scrollAnim {
+      0% { transform: scaleY(0); transform-origin: top; }
+      50% { transform: scaleY(1); transform-origin: top; }
+      51% { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* =============================================
+       MARQUEE
+    ============================================= */
+    .marquee-section {
+      overflow: hidden;
+      background: var(--red);
+      padding: 1rem 0;
+      position: relative;
+      z-index: 10;
+    }
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      white-space: nowrap;
+      animation: marqueeAnim 18s linear infinite;
+    }
+    .marquee-track span {
+      font-family: var(--font-head);
+      font-size: 1.1rem;
+      letter-spacing: 0.15em;
+      color: var(--white);
+      padding: 0 2rem;
+      display: inline-block;
+    }
+    .marquee-track span.dot { color: rgba(255,255,255,0.5); padding: 0; }
+    @keyframes marqueeAnim {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* =============================================
+       SECTION COMMONS
+    ============================================= */
+    section { padding: 7rem 2.5rem; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--red);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.2rem;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 30px; height: 1.5px;
+      background: var(--red);
+    }
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 1;
+      letter-spacing: 0.03em;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+    .section-title span { color: var(--red); }
+
+    /* =============================================
+       STATS
+    ============================================= */
+    #stats { background: var(--black2); padding: 5rem 2.5rem; }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+    }
+    .stat-card {
+      background: var(--black3);
+      padding: 3rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gradient);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s ease;
+    }
+    .stat-card:hover { background: #1f1f1f; }
+    .stat-card:hover::before { transform: scaleX(1); }
+    .stat-number {
+      font-family: var(--font-head);
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+
+    /* =============================================
+       SERVICES
+    ============================================= */
+    #services { background: var(--black); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5px;
+      margin-top: 4rem;
+    }
+    .service-card {
+      background: var(--black3);
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.4s;
+      cursor: none;
+    }
+    .service-card::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: var(--gradient);
+      opacity: 0;
+      transition: opacity 0.4s;
+      z-index: 0;
+    }
+    .service-card:hover { background: #1d1d1d; }
+    .service-card:hover::after { opacity: 0.05; }
+    .service-card > * { position: relative; z-index: 1; }
+    .service-icon {
+      width: 60px; height: 60px;
+      background: rgba(239,68,68,0.1);
+      border: 1px solid rgba(239,68,68,0.25);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      transition: background 0.3s, border-color 0.3s, transform 0.3s;
+    }
+    .service-card:hover .service-icon {
+      background: rgba(239,68,68,0.2);
+      border-color: rgba(239,68,68,0.5);
+      transform: scale(1.1);
+    }
+    .service-num {
+      font-family: var(--font-head);
+      font-size: 0.9rem;
+      color: rgba(239,68,68,0.4);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.75rem;
+    }
+    .service-title {
+      font-family: var(--font-head);
+      font-size: 1.8rem;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+    }
+    .service-desc {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--grey);
+    }
+    .service-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--red);
+      transition: gap 0.3s;
+    }
+    .service-card:hover .service-arrow { gap: 0.9rem; }
+
+    /* =============================================
+       ABOUT
+    ============================================= */
+    #about { background: var(--black2); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+    .about-visual {
+      position: relative;
+    }
+    .about-img-frame {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--black3);
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+    }
+    .about-img-placeholder {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .about-img-placeholder i {
+      font-size: 5rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .about-img-placeholder p {
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+    .about-badge {
+      position: absolute;
+      bottom: -1.5rem; right: -1.5rem;
+      background: var(--gradient);
+      padding: 1.5rem;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(239,68,68,0.3);
+    }
+    .about-badge .num {
+      font-family: var(--font-head);
+      font-size: 2.5rem;
+      color: var(--white);
+      line-height: 1;
+    }
+    .about-badge .lbl {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+    }
+    .about-text { }
+    .about-bio {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: #aaaaaa;
+      margin-bottom: 2.5rem;
+    }
+    .about-bio strong { color: var(--white); }
+    .about-credentials {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .credential-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.2rem;
+      background: var(--black3);
+      border-radius: 8px;
+      border-left: 2px solid var(--red);
+    }
+    .credential-item i {
+      color: var(--red);
+      font-size: 1rem;
+      margin-top: 0.1rem;
+      flex-shrink: 0;
+    }
+    .credential-item p {
+      font-size: 0.88rem;
+      line-height: 1.5;
+      color: var(--lightgrey);
+    }
+    .credential-item strong { color: var(--white); display: block; margin-bottom: 0.15rem; }
+
+    /* =============================================
+       PROCESS
+    ============================================= */
+    #process { background: var(--black); }
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5px;
+      margin-top: 4rem;
+    }
+    .process-step {
+      background: var(--black3);
+      padding: 2.5rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .process-step::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gradient);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.6s ease;
+    }
+    .process-step:hover::before { transform: scaleX(1); }
+    .step-num {
+      font-family: var(--font-head);
+      font-size: 4rem;
+      color: rgba(239,68,68,0.08);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+      transition: color 0.3s;
+    }
+    .process-step:hover .step-num { color: rgba(239,68,68,0.15); }
+    .step-icon {
+      width: 48px; height: 48px;
+      background: rgba(239,68,68,0.1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: var(--red);
+      margin-bottom: 1.2rem;
+    }
+    .step-title {
+      font-family: var(--font-head);
+      font-size: 1.4rem;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+    }
+    .step-desc { font-size: 0.85rem; line-height: 1.7; color: var(--grey); }
+
+    /* =============================================
+       TESTIMONIALS
+    ============================================= */
+    #testimonials { background: var(--black2); }
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      margin-top: 4rem;
+    }
+    .testi-card {
+      background: var(--black3);
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .testi-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(0,0,0,0.5); }
+    .testi-quote {
+      font-size: 3rem;
+      line-height: 1;
+      color: rgba(239,68,68,0.2);
+      font-family: Georgia, serif;
+      margin-bottom: 1rem;
+    }
+    .testi-text {
+      font-size: 0.92rem;
+      line-height: 1.8;
+      color: #aaaaaa;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .testi-avatar {
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      background: var(--gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-head);
+      font-size: 1.2rem;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .testi-name { font-weight: 700; font-size: 0.9rem; color: var(--white); }
+    .testi-meta { font-size: 0.75rem; color: var(--red); margin-top: 0.1rem; }
+    .testi-stars {
+      position: absolute;
+      top: 2rem; right: 2rem;
+      color: #f59e0b;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+    }
+    .result-badge {
+      display: inline-block;
+      background: rgba(239,68,68,0.1);
+      border: 1px solid rgba(239,68,68,0.25);
+      color: var(--red);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border-radius: 100px;
+      margin-bottom: 1.2rem;
+    }
+
+    /* =============================================
+       CTA SECTION
+    ============================================= */
+    #cta-section {
+      background: var(--black);
+      padding: 7rem 2.5rem;
+    }
+    .cta-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .cta-title {
+      font-family: var(--font-head);
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: 0.95;
+      letter-spacing: 0.03em;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+    .cta-title span {
+      color: transparent;
+      -webkit-text-stroke: 1.5px var(--red);
+    }
+    .cta-sub {
+      font-size: 1rem;
+      color: var(--grey);
+      line-height: 1.7;
+      margin-bottom: 3rem;
+      max-width: 540px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-big {
+      padding: 1.2rem 2.5rem !important;
+      font-size: 1rem !important;
+    }
+
+    /* =============================================
+       CONTACT / SOCIAL
+    ============================================= */
+    #contact { background: var(--black2); padding: 6rem 2.5rem; }
+    .contact-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .contact-left .section-title { margin-bottom: 1rem; }
+    .contact-left p { font-size: 1rem; line-height: 1.7; color: var(--grey); margin-bottom: 2.5rem; }
+    .social-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 1.2rem 1.5rem;
+      background: var(--black3);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--white);
+      border: 1px solid transparent;
+      transition: border-color 0.3s, background 0.3s, transform 0.25s;
+    }
+    .social-link:hover {
+      border-color: rgba(239,68,68,0.3);
+      background: rgba(239,68,68,0.05);
+      transform: translateX(6px);
+    }
+    .social-link .s-icon {
+      width: 44px; height: 44px;
+      background: rgba(239,68,68,0.1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: var(--red);
+      flex-shrink: 0;
+      transition: background 0.3s;
+    }
+    .social-link:hover .s-icon { background: rgba(239,68,68,0.2); }
+    .s-name { font-weight: 700; font-size: 0.9rem; }
+    .s-handle { font-size: 0.78rem; color: var(--grey); margin-top: 0.1rem; }
+    .contact-right {
+      background: var(--black3);
+      border-radius: 12px;
+      padding: 3rem;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .contact-right h3 {
+      font-family: var(--font-head);
+      font-size: 2rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+    .contact-right p { font-size: 0.9rem; color: var(--grey); margin-bottom: 2rem; }
+    .ig-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: var(--white);
+      padding: 1.1rem 2rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.25s, box-shadow 0.25s;
+      justify-content: center;
+      width: 100%;
+    }
+    .ig-cta:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(220,39,67,0.4); }
+    .linktree-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: #39d353;
+      color: var(--black);
+      padding: 1.1rem 2rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.25s, box-shadow 0.25s;
+      justify-content: center;
+      width: 100%;
+      margin-top: 1rem;
+    }
+    .linktree-cta:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(57,211,83,0.3); }
+    .questionnaire-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: var(--gradient);
+      color: var(--white);
+      padding: 1.1rem 2rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.25s, box-shadow 0.25s;
+      justify-content: center;
+      width: 100%;
+      margin-top: 1rem;
+    }
+    .questionnaire-cta:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(239,68,68,0.4); }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    footer {
+      background: var(--black);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 3rem 2.5rem;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: var(--font-head);
+      font-size: 2rem;
+      letter-spacing: 0.1em;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .footer-logo span { color: var(--red); }
+    footer p { font-size: 0.8rem; color: var(--grey); line-height: 1.7; }
+    footer a { color: var(--red); text-decoration: none; }
+    footer a:hover { color: var(--orange); }
+    .footer-divider { width: 40px; height: 1.5px; background: var(--gradient); margin: 1.5rem auto; border-radius: 2px; }
+
+    /* =============================================
+       UTILITIES
+    ============================================= */
+    .reveal { opacity: 0; transform: translateY(40px); }
+    .reveal-left { opacity: 0; transform: translateX(-40px); }
+    .reveal-right { opacity: 0; transform: translateX(40px); }
+
+    /* =============================================
+       RESPONSIVE
+    ============================================= */
+    @media (max-width: 1024px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-visual { max-width: 420px; margin: 0 auto; }
+    }
+    @media (max-width: 768px) {
+      section { padding: 5rem 1.5rem; }
+      .nav-links { display: none; }
+      .burger { display: flex; }
+      #mobile-menu { display: flex; }
+      .services-grid { grid-template-columns: 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .hero-content { padding: 8rem 1.5rem 5rem; }
+      #cursor, #cursor-follower { display: none; }
+      body { cursor: auto; }
+      .btn-primary, .btn-secondary { cursor: pointer; }
+      .service-card, .social-link, .burger { cursor: pointer; }
+    }
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-grid { grid-template-columns: 1fr; }
+      .hero-cta-group { flex-direction: column; }
+      .hero-cta-group .btn-primary,
+      .hero-cta-group .btn-secondary { justify-content: center; }
+      .cta-buttons { flex-direction: column; align-items: center; }
+      .about-badge { bottom: -1rem; right: -0.5rem; padding: 1rem; }
+      .about-badge .num { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body class="loading">
+
+  <!-- CURSOR -->
+  <div id="cursor"></div>
+  <div id="cursor-follower"></div>
+
+  <!-- LOADER -->
+  <div id="loader">
+    <div class="loader-line">
+      <span class="loader-name">RADU MOCUȚA</span>
+    </div>
+    <div class="loader-line" style="margin-top:0.6rem;">
+      <span class="loader-sub">FITNESS &amp; NUTRIȚIE</span>
+    </div>
+    <div class="loader-bar-wrap">
+      <div class="loader-bar" id="loaderBar"></div>
+    </div>
+    <div class="loader-percent" id="loaderPercent">0%</div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">RADU <span>MOCUȚA</span></a>
+    <ul class="nav-links">
+      <li><a href="#services">Servicii</a></li>
+      <li><a href="#about">Despre</a></li>
+      <li><a href="#process">Proces</a></li>
+      <li><a href="#testimonials">Rezultate</a></li>
+      <li><a href="#contact" class="nav-cta">Începe Acum</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Meniu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Meniu navigare">
+    <a href="#services" class="mob-link">Servicii</a>
+    <a href="#about" class="mob-link">Despre</a>
+    <a href="#process" class="mob-link">Proces</a>
+    <a href="#testimonials" class="mob-link">Rezultate</a>
+    <a href="#contact" class="mob-link mobile-menu-cta">Începe Acum</a>
+  </div>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i class="fa-solid fa-fire"></i>
+        Coach Certificat &amp; Antrenor Personal
+      </div>
+      <h1 class="hero-title">
+        <span class="line"><span>RADU</span></span>
+        <span class="line"><span class="accent">MOCUȚA</span></span>
+      </h1>
+      <p class="hero-subtitle">Coach Fitness &amp; Nutriție</p>
+      <p class="hero-tagline">
+        <strong>Cum ajungi să dai jos 8–12 kg în 4–6 luni</strong><br>
+        și să menții rezultatele pe termen lung.
+      </p>
+      <div class="hero-cta-group">
+        <a href="#contact" class="btn-primary btn-magnetic">
+          <i class="fa-solid fa-bolt"></i> Începe Transformarea
+        </a>
+        <a href="#services" class="btn-secondary btn-magnetic">
+          <i class="fa-solid fa-arrow-right"></i> Vezi Programele
+        </a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-section" aria-hidden="true">
+    <div class="marquee-track" id="marqueeTrack">
+      <!-- Items duplicated for seamless loop -->
+      <span>TRANSFORMĂ-TE</span><span class="dot">•</span>
+      <span>ANTRENEAZĂ-TE</span><span class="dot">•</span>
+      <span>NUTRIȚIE</span><span class="dot">•</span>
+      <span>COACHING ONLINE</span><span class="dot">•</span>
+      <span>REZULTATE REALE</span><span class="dot">•</span>
+      <span>TRANSFORMĂ-TE</span><span class="dot">•</span>
+      <span>ANTRENEAZĂ-TE</span><span class="dot">•</span>
+      <span>NUTRIȚIE</span><span class="dot">•</span>
+      <span>COACHING ONLINE</span><span class="dot">•</span>
+      <span>REZULTATE REALE</span><span class="dot">•</span>
+      <span>TRANSFORMĂ-TE</span><span class="dot">•</span>
+      <span>ANTRENEAZĂ-TE</span><span class="dot">•</span>
+      <span>NUTRIȚIE</span><span class="dot">•</span>
+      <span>COACHING ONLINE</span><span class="dot">•</span>
+      <span>REZULTATE REALE</span><span class="dot">•</span>
+      <span>TRANSFORMĂ-TE</span><span class="dot">•</span>
+      <span>ANTRENEAZĂ-TE</span><span class="dot">•</span>
+      <span>NUTRIȚIE</span><span class="dot">•</span>
+      <span>COACHING ONLINE</span><span class="dot">•</span>
+      <span>REZULTATE REALE</span><span class="dot">•</span>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <section id="stats">
+    <div class="section-inner">
+      <div class="stats-grid">
+        <div class="stat-card reveal">
+          <div class="stat-number" data-target="10000" data-suffix="+">0</div>
+          <div class="stat-label">Ore de Practică</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="stat-number" data-target="7" data-suffix="+">0</div>
+          <div class="stat-label">Ani ca Antrenor Certificat</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="stat-number" data-target="500" data-suffix="+">0</div>
+          <div class="stat-label">Clienți Transformați</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="stat-number" data-target="2" data-suffix="">0</div>
+          <div class="stat-label">Diplome Internaționale</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-inner">
+      <div class="section-label">Ce Ofer</div>
+      <h2 class="section-title reveal">Programele <span>Mele</span></h2>
+      <div class="services-grid">
+        <div class="service-card reveal-left">
+          <div class="service-num">01</div>
+          <div class="service-icon">💪</div>
+          <h3 class="service-title">Antrenament Personal</h3>
+          <p class="service-desc">Sesiuni 1:1 complet personalizate, adaptate nivelului și obiectivelor tale. Fiecare antrenament este conceput pentru progres maxim și siguranță optimă.</p>
+          <div class="service-arrow">Află mai mult <i class="fa-solid fa-arrow-right"></i></div>
+        </div>
+        <div class="service-card reveal-right">
+          <div class="service-num">02</div>
+          <div class="service-icon">📱</div>
+          <h3 class="service-title">Coaching Online</h3>
+          <p class="service-desc">Program complet de antrenament și nutriție la distanță. Acces la ghidul de transformare corporală, suport continuu și monitorizare săptămânală.</p>
+          <div class="service-arrow">Află mai mult <i class="fa-solid fa-arrow-right"></i></div>
+        </div>
+        <div class="service-card reveal-left">
+          <div class="service-num">03</div>
+          <div class="service-icon">🥗</div>
+          <h3 class="service-title">Plan Nutrițional</h3>
+          <p class="service-desc">Alimentație 100% adaptată obiectivelor și stilului tău de viață. Mănânci ce îți place, dar inteligent. Rezultate sustenabile, fără foame și fără restricții extreme.</p>
+          <div class="service-arrow">Află mai mult <i class="fa-solid fa-arrow-right"></i></div>
+        </div>
+        <div class="service-card reveal-right">
+          <div class="service-num">04</div>
+          <div class="service-icon">👥</div>
+          <h3 class="service-title">Antrenament în Grup</h3>
+          <p class="service-desc">Energia colectivă amplifică rezultatele individuale. Sesiuni de grup dinamice, motivante și extrem de eficiente, pentru toată lumea indiferent de nivel.</p>
+          <div class="service-arrow">Află mai mult <i class="fa-solid fa-arrow-right"></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-visual reveal-left">
+          <div class="about-img-frame">
+            <div class="about-img-placeholder">
+              <i class="fa-solid fa-dumbbell"></i>
+              <p>Radu Mocuța</p>
+            </div>
+          </div>
+          <div class="about-badge">
+            <div class="num">2009</div>
+            <div class="lbl">Experiență din</div>
+          </div>
+        </div>
+        <div class="about-text reveal-right">
+          <div class="section-label">Despre Mine</div>
+          <h2 class="section-title">Povestea <span>Mea</span></h2>
+          <p class="about-bio">
+            Sunt antrenor certificat de fitness și nutriție <strong>din 2018</strong>, timp în care am acumulat <strong>peste 10.000 de ore de practică</strong>, antrenând persoane de toate vârstele. Experiența mea în domeniul antrenamentului sportiv datează din <strong>2009</strong>, când am început studiile la <strong>Universitatea de Educație Fizică și Sport din București</strong>, iar mai apoi la instituția similară din Bordeaux, unde am absolvit un <strong>master în antrenament sportiv</strong>. În toată această perioadă am ajutat sute de persoane să se bucure de o mai bună formă fizică și mentală.
+          </p>
+          <div class="about-credentials">
+            <div class="credential-item">
+              <i class="fa-solid fa-graduation-cap"></i>
+              <p><strong>Universitatea de Educație Fizică și Sport București</strong>Licență în educație fizică și sport</p>
+            </div>
+            <div class="credential-item">
+              <i class="fa-solid fa-globe"></i>
+              <p><strong>Master în Antrenament Sportiv — Bordeaux, Franța</strong>Specializare internațională în performanță sportivă</p>
+            </div>
+            <div class="credential-item">
+              <i class="fa-solid fa-certificate"></i>
+              <p><strong>Coach Certificat Fitness &amp; Nutriție — din 2018</strong>Programe personalizate cu rezultate garantate</p>
+            </div>
+            <div class="credential-item">
+              <i class="fa-solid fa-clock"></i>
+              <p><strong>10.000+ Ore de Practică</strong>Experiență acumulată cu clienți de toate vârstele și nivelurile</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="section-inner">
+      <div class="section-label">Cum Funcționează</div>
+      <h2 class="section-title reveal">Procesul <span>Meu</span></h2>
+      <div class="process-grid">
+        <div class="process-step reveal">
+          <div class="step-num">01</div>
+          <div class="step-icon"><i class="fa-solid fa-comments"></i></div>
+          <h3 class="step-title">Consultare Gratuită</h3>
+          <p class="step-desc">Discutăm obiectivele tale, stilul de viață și orice limitări. Înțeleg exact ce vrei să obții.</p>
+        </div>
+        <div class="process-step reveal">
+          <div class="step-num">02</div>
+          <div class="step-icon"><i class="fa-solid fa-clipboard-list"></i></div>
+          <h3 class="step-title">Plan Personalizat</h3>
+          <p class="step-desc">Creăm împreună programul ideal — antrenament + nutriție — adaptat 100% la viața ta reală.</p>
+        </div>
+        <div class="process-step reveal">
+          <div class="step-num">03</div>
+          <div class="step-icon"><i class="fa-solid fa-fire-flame-curved"></i></div>
+          <h3 class="step-title">Antrenament &amp; Nutriție</h3>
+          <p class="step-desc">Executăm planul împreună. Suport constant, ajustări la fiecare pas, niciodată singur/ă.</p>
+        </div>
+        <div class="process-step reveal">
+          <div class="step-num">04</div>
+          <div class="step-icon"><i class="fa-solid fa-trophy"></i></div>
+          <h3 class="step-title">Rezultate Garantate</h3>
+          <p class="step-desc">Monitorizăm progresul săptămânal și ajustăm planul pentru rezultate maxime și sustenabile.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="section-inner">
+      <div class="section-label">Rezultate Reale</div>
+      <h2 class="section-title reveal">Ce Spun <span>Clienții</span></h2>
+      <div class="testi-grid">
+        <!-- Card 1 -->
+        <div class="testi-card reveal">
+          <div class="testi-stars">★★★★★</div>
+          <div class="result-badge">−11 kg în 5 luni</div>
+          <div class="testi-quote">"</div>
+          <p class="testi-text">Am încercat zeci de diete și tot felul de programe, nimic nu a funcționat pe termen lung. Radu mi-a schimbat complet perspectiva. Nu mi-a dat o dietă strictă, ci m-a învățat să mănânc inteligent. Antrenamentele sunt dure, dar simți că fiecare repriză are un scop. Am dat jos 11 kg în 5 luni și cel mai important — le-am menținut!</p>
+          <div class="testi-author">
+            <div class="testi-avatar">AM</div>
+            <div>
+              <div class="testi-name">Andreea M.</div>
+              <div class="testi-meta">Coaching Online · București</div>
+            </div>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="testi-card reveal">
+          <div class="testi-stars">★★★★★</div>
+          <div class="result-badge">−9 kg + masă musculară</div>
+          <div class="testi-quote">"</div>
+          <p class="testi-text">La 42 de ani credeam că e prea târziu. Radu m-a convins că nu vârsta e problema. Cu programul lui am slăbit 9 kg, am câștigat masă musculară vizibilă și am mai multă energie decât la 30 de ani. Combinația antrenament + nutriție personalizată e cheia. Profesionalism pur.</p>
+          <div class="testi-author">
+            <div class="testi-avatar">CP</div>
+            <div>
+              <div class="testi-name">Claudiu P.</div>
+              <div class="testi-meta">Antrenament Personal · 42 ani</div>
+            </div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="testi-card reveal">
+          <div class="testi-stars">★★★★★</div>
+          <div class="result-badge">−8 kg în 4 luni</div>
+          <div class="testi-quote">"</div>
+          <p class="testi-text">Am venit cu puțin timp disponibil și multă nesiguranță. Radu a creat un program pe care îl pot urma zilnic, fără să-mi dau viața peste cap. 8 kg jos în 4 luni, forme definite și o mentalitate complet schimbată față de fitness. Acum recomand tuturor din jur.</p>
+          <div class="testi-author">
+            <div class="testi-avatar">IT</div>
+            <div>
+              <div class="testi-name">Ioana T.</div>
+              <div class="testi-meta">Plan Nutrițional + Online</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section id="cta-section">
+    <div class="cta-inner">
+      <div class="section-label" style="justify-content:center; margin-bottom:1.5rem;">Transformarea Ta</div>
+      <h2 class="cta-title reveal">
+        GATA SĂ<br><span>SCHIMBI</span><br>TOTUL?
+      </h2>
+      <p class="cta-sub reveal">
+        Completează chestionarul de coaching online sau trimite-mi un mesaj direct. Primul pas e gratuit — consultarea inițială nu te costă nimic.
+      </p>
+      <div class="cta-buttons reveal">
+        <a href="https://5flr6u0iftg.typeform.com/to/woxeWPB7" target="_blank" rel="noopener" class="btn-primary btn-big btn-magnetic">
+          <i class="fa-solid fa-clipboard-check"></i> Completează Chestionarul
+        </a>
+        <a href="https://www.instagram.com/radu_fitnesssinutritie/" target="_blank" rel="noopener" class="btn-secondary btn-big btn-magnetic">
+          <i class="fa-brands fa-instagram"></i> Scrie-mi pe Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-inner">
+      <div class="contact-left reveal-left">
+        <div class="section-label">Contact</div>
+        <h2 class="section-title">Găsește-mă <span>Online</span></h2>
+        <p>Sunt activ pe Instagram și TikTok. Urmărește-mă pentru tips-uri zilnice de fitness și nutriție, sau scrie-mi direct pentru a începe colaborarea.</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/radu_fitnesssinutritie/" target="_blank" rel="noopener" class="social-link">
+            <div class="s-icon"><i class="fa-brands fa-instagram"></i></div>
+            <div>
+              <div class="s-name">Instagram</div>
+              <div class="s-handle">@radu_fitnesssinutritie</div>
+            </div>
+            <i class="fa-solid fa-arrow-right" style="margin-left:auto; color:var(--grey); font-size:0.8rem;"></i>
+          </a>
+          <a href="https://www.tiktok.com/@radu_fitnesssinutritie" target="_blank" rel="noopener" class="social-link">
+            <div class="s-icon"><i class="fa-brands fa-tiktok"></i></div>
+            <div>
+              <div class="s-name">TikTok</div>
+              <div class="s-handle">@radu_fitnesssinutritie</div>
+            </div>
+            <i class="fa-solid fa-arrow-right" style="margin-left:auto; color:var(--grey); font-size:0.8rem;"></i>
+          </a>
+          <a href="https://linktr.ee/radumocutafit" target="_blank" rel="noopener" class="social-link">
+            <div class="s-icon" style="background:rgba(57,211,83,0.1);"><i class="fa-solid fa-link" style="color:#39d353;"></i></div>
+            <div>
+              <div class="s-name">Linktree</div>
+              <div class="s-handle">linktr.ee/radumocutafit</div>
+            </div>
+            <i class="fa-solid fa-arrow-right" style="margin-left:auto; color:var(--grey); font-size:0.8rem;"></i>
+          </a>
+        </div>
+      </div>
+      <div class="contact-right reveal-right">
+        <h3>Începe <span style="color:var(--red);">Acum</span></h3>
+        <p>Primul pas spre transformarea ta e la un click distanță.</p>
+        <a href="https://www.instagram.com/radu_fitnesssinutritie/" target="_blank" rel="noopener" class="ig-cta">
+          <i class="fa-brands fa-instagram"></i> Trimite mesaj pe Instagram
+        </a>
+        <a href="https://5flr6u0iftg.typeform.com/to/woxeWPB7" target="_blank" rel="noopener" class="questionnaire-cta">
+          <i class="fa-solid fa-clipboard-list"></i> Chestionar Coaching Online
+        </a>
+        <a href="https://linktr.ee/radumocutafit" target="_blank" rel="noopener" class="linktree-cta">
+          <i class="fa-solid fa-link"></i> Toate Link-urile Mele
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">RADU <span>MOCUȚA</span></div>
+    <div class="footer-divider"></div>
+    <p>
+      Coach Fitness &amp; Nutriție · Certificat din 2018<br>
+      Universitatea de Educație Fizică și Sport București &amp; Bordeaux, Franța<br><br>
+      <a href="https://www.instagram.com/radu_fitnesssinutritie/" target="_blank">Instagram</a> &nbsp;·&nbsp;
+      <a href="https://www.tiktok.com/@radu_fitnesssinutritie" target="_blank">TikTok</a> &nbsp;·&nbsp;
+      <a href="https://linktr.ee/radumocutafit" target="_blank">Linktree</a>
+      <br><br>
+      &copy; <span id="year"></span> Radu Mocuța. Toate drepturile rezervate.
+    </p>
+  </footer>
+
+  <script>
+  // =============================================
+  // GSAP + PLUGINS
+  // =============================================
+  gsap.registerPlugin(ScrollTrigger, TextPlugin);
+
+  // =============================================
+  // CURSOR
+  // =============================================
+  const cursor = document.getElementById('cursor');
+  const follower = document.getElementById('cursor-follower');
+  let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+  let fx = mx, fy = my;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    gsap.to(cursor, { x: mx, y: my, duration: 0.05, ease: 'none' });
+  });
+
+  function animateFollower() {
+    fx += (mx - fx) * 0.12;
+    fy += (my - fy) * 0.12;
+    gsap.set(follower, { x: fx, y: fy });
+    requestAnimationFrame(animateFollower);
+  }
+  animateFollower();
+
+  // =============================================
+  // LOADER
+  // =============================================
+  const loaderBar = document.getElementById('loaderBar');
+  const loaderPercent = document.getElementById('loaderPercent');
+  const loader = document.getElementById('loader');
+
+  let progress = 0;
+  const loaderInterval = setInterval(() => {
+    progress += Math.random() * 18;
+    if (progress >= 100) { progress = 100; clearInterval(loaderInterval); startIntro(); }
+    gsap.to(loaderBar, { width: progress + '%', duration: 0.3, ease: 'power2.out' });
+    loaderPercent.textContent = Math.round(progress) + '%';
+  }, 120);
+
+  function startIntro() {
+    const tl = gsap.timeline();
+    tl.to('.loader-name', { y: 0, duration: 0.9, ease: 'expo.out' }, 0)
+      .to('.loader-sub',  { y: 0, duration: 0.9, ease: 'expo.out' }, 0.15)
+      .to('#loader', {
+        yPercent: -100,
+        duration: 1,
+        ease: 'expo.inOut',
+        delay: 0.6,
+        onComplete: () => {
+          loader.style.display = 'none';
+          document.body.classList.remove('loading');
+          animateHero();
+        }
+      });
+  }
+
+  // =============================================
+  // HERO ANIMATION
+  // =============================================
+  function animateHero() {
+    const tl = gsap.timeline();
+    tl.to('.hero-title .line span', {
+        y: 0,
+        duration: 1.1,
+        stagger: 0.12,
+        ease: 'expo.out'
+      }, 0)
+      .to('.hero-badge',    { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 0.3)
+      .to('.hero-subtitle', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 0.5)
+      .to('.hero-tagline',  { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 0.65)
+      .to('.hero-cta-group',{ opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 0.8)
+      .to('.hero-scroll',   { opacity: 1, duration: 0.8, ease: 'power2.out' }, 1.1);
+  }
+
+  // =============================================
+  // NAVBAR SCROLL
+  // =============================================
+  const navbar = document.getElementById('navbar');
+  ScrollTrigger.create({
+    start: 'top -80',
+    onEnter: () => navbar.classList.add('scrolled'),
+    onLeaveBack: () => navbar.classList.remove('scrolled')
+  });
+
+  // =============================================
+  // SCROLL REVEALS
+  // =============================================
+  document.querySelectorAll('.reveal').forEach(el => {
+    gsap.fromTo(el,
+      { opacity: 0, y: 50 },
+      { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 85%', once: true } }
+    );
+  });
+  document.querySelectorAll('.reveal-left').forEach(el => {
+    gsap.fromTo(el,
+      { opacity: 0, x: -50 },
+      { opacity: 1, x: 0, duration: 0.9, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 85%', once: true } }
+    );
+  });
+  document.querySelectorAll('.reveal-right').forEach(el => {
+    gsap.fromTo(el,
+      { opacity: 0, x: 50 },
+      { opacity: 1, x: 0, duration: 0.9, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 85%', once: true } }
+    );
+  });
+
+  // =============================================
+  // COUNTER ANIMATION
+  // =============================================
+  document.querySelectorAll('.stat-number').forEach(el => {
+    const target = parseInt(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    const obj = { val: 0 };
+    ScrollTrigger.create({
+      trigger: el,
+      start: 'top 85%',
+      once: true,
+      onEnter: () => {
+        gsap.to(obj, {
+          val: target,
+          duration: 2,
+          ease: 'power2.out',
+          onUpdate() {
+            const v = Math.round(obj.val);
+            el.textContent = (v >= 1000 ? v.toLocaleString('ro-RO') : v) + suffix;
+          }
+        });
+      }
+    });
+  });
+
+  // =============================================
+  // HERO PARALLAX
+  // =============================================
+  gsap.to('.hero-bg', {
+    y: 120,
+    ease: 'none',
+    scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true }
+  });
+  gsap.to('.hero-grid', {
+    y: 60,
+    ease: 'none',
+    scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true }
+  });
+
+  // =============================================
+  // MAGNETIC BUTTONS
+  // =============================================
+  document.querySelectorAll('.btn-magnetic').forEach(btn => {
+    btn.addEventListener('mousemove', e => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      gsap.to(btn, { x: x * 0.18, y: y * 0.18, duration: 0.3, ease: 'power2.out' });
+    });
+    btn.addEventListener('mouseleave', () => {
+      gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.4)' });
+    });
+  });
+
+  // =============================================
+  // MOBILE MENU
+  // =============================================
+  const burger = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  function openMenu() {
+    burger.classList.add('active');
+    mobileMenu.style.display = 'flex';
+    requestAnimationFrame(() => mobileMenu.classList.add('open'));
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    burger.classList.remove('active');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(() => { mobileMenu.style.display = 'none'; }, 350);
+  }
+
+  burger.addEventListener('click', () => {
+    if (burger.classList.contains('active')) closeMenu(); else openMenu();
+  });
+  document.querySelectorAll('.mob-link').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // =============================================
+  // YEAR
+  // =============================================
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // =============================================
+  // SMOOTH ANCHOR SCROLL
+  // =============================================
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const offset = target.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top: offset, behavior: 'smooth' });
+      }
+    });
+  });
+  </script>
+</body>
+</html>
