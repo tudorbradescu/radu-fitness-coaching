@@ -900,6 +900,14 @@
       .about-badge { bottom:-1rem; right:-0.5rem; padding:1rem; }
       .about-badge .num { font-size:1.7rem; }
     }
+  
+    /* Half-clip: show left or right half of a combined before/after image */
+    .clip-left  { width:200% !important; max-width:none !important; height:100% !important; object-fit:cover !important; transform:none !important; }
+    .clip-right { width:200% !important; max-width:none !important; height:100% !important; object-fit:cover !important; transform:translateX(-50%) !important; }
+    .ba-img:hover .clip-left  { transform:scale(1.05) !important; }
+    .ba-img:hover .clip-right { transform:translateX(-50%) scale(1.05) !important; }
+    .pair-img:hover .clip-left  { transform:scale(1.05) !important; }
+    .pair-img:hover .clip-right { transform:translateX(-50%) scale(1.05) !important; }
   </style>
 </head>
 <body class="loading">
@@ -1144,13 +1152,13 @@
           <div class="ba-label after"><i class="fa-solid fa-bolt" style="margin-right:.4rem;font-size:.65rem;"></i> După</div>
         </div>
         <div class="ba-pair">
-          <div class="ba-img lightbox-trigger" data-src="images/radu-006b.jpg">
-            <img src="images/radu-006b.jpg" alt="Transformare – înainte" loading="lazy"
+          <div class="ba-img lightbox-trigger" data-src="images/radu-006.jpg">
+            <img src="images/radu-006.jpg" alt="Transformare – înainte" loading="lazy" class="clip-left"
                  onerror="this.parentElement.style.background='#1a1a1a';this.style.display='none'" />
             <span class="ba-tag t-before">Înainte</span>
           </div>
-          <div class="ba-img lightbox-trigger" data-src="images/radu-005a.jpg">
-            <img src="images/radu-006a.jpg" alt="Transformare – după" loading="lazy"
+          <div class="ba-img lightbox-trigger" data-src="images/radu-006.jpg">
+            <img src="images/radu-006.jpg" alt="Transformare – după" loading="lazy" class="clip-right"
                  onerror="this.parentElement.style.background='#1a1a1a';this.style.display='none'" />
             <span class="ba-tag t-after">După</span>
           </div>
@@ -1176,13 +1184,13 @@
         <!-- Card 1: radu-004 / radu-005 -->
         <div class="ba-card reveal">
           <div class="pair-wrap">
-            <div class="pair-img lightbox-trigger" data-src="images/radu-004b.jpg">
-              <img src="images/radu-004b.jpg" alt="Înainte" loading="lazy"
+            <div class="pair-img lightbox-trigger" data-src="images/radu-004.jpg">
+              <img src="images/radu-004.jpg" alt="Înainte" loading="lazy" class="clip-left"
                    onerror="this.parentElement.style.background='#1a1a1a';this.style.display='none'" />
               <span class="pair-tag p-before">Înainte</span>
             </div>
-            <div class="pair-img lightbox-trigger" data-src="images/radu-004a.jpg">
-              <img src="images/radu-004a.jpg" alt="După" loading="lazy"
+            <div class="pair-img lightbox-trigger" data-src="images/radu-004.jpg">
+              <img src="images/radu-004.jpg" alt="După" loading="lazy" class="clip-right"
                    onerror="this.parentElement.style.background='#1a1a1a';this.style.display='none'" />
               <span class="pair-tag p-after">După</span>
             </div>
@@ -1196,13 +1204,13 @@
         <!-- Card 2: radu-006 / radu-007 -->
         <div class="ba-card reveal">
           <div class="pair-wrap">
-            <div class="pair-img lightbox-trigger" data-src="images/radu-005b.jpg">
-              <img src="images/radu-005b.jpg" alt="Înainte" loading="lazy"
+            <div class="pair-img lightbox-trigger" data-src="images/radu-005.jpg">
+              <img src="images/radu-005.jpg" alt="Înainte" loading="lazy" class="clip-left"
                    onerror="this.parentElement.style.background='#1a1a1a';this.style.display='none'" />
               <span class="pair-tag p-before">Înainte</span>
             </div>
             <div class="pair-img lightbox-trigger" data-src="images/radu-005a.jpg">
-              <img src="images/radu-005a.jpg" alt="După" loading="lazy"
+              <img src="images/radu-005.jpg" alt="După" loading="lazy" class="clip-right"
                    onerror="this.parentElement.style.background='#1a1a1a';this.style.display='none'" />
               <span class="pair-tag p-after">După</span>
             </div>
@@ -1216,13 +1224,13 @@
         <!-- Card 3: radu-008 / radu-009 -->
         <div class="ba-card reveal">
           <div class="pair-wrap">
-            <div class="pair-img lightbox-trigger" data-src="images/radu-003b.jpg">
-              <img src="images/radu-003b.jpg" alt="Înainte" loading="lazy"
+            <div class="pair-img lightbox-trigger" data-src="images/radu-003.jpg">
+              <img src="images/radu-003.jpg" alt="Înainte" loading="lazy" class="clip-left"
                    onerror="this.parentElement.style.background='#1a1a1a';this.style.display='none'" />
               <span class="pair-tag p-before">Înainte</span>
             </div>
-            <div class="pair-img lightbox-trigger" data-src="images/radu-003a.jpg">
-              <img src="images/radu-003a.jpg" alt="După" loading="lazy"
+            <div class="pair-img lightbox-trigger" data-src="images/radu-003.jpg">
+              <img src="images/radu-003.jpg" alt="După" loading="lazy" class="clip-right"
                    onerror="this.parentElement.style.background='#1a1a1a';this.style.display='none'" />
               <span class="pair-tag p-after">După</span>
             </div>
